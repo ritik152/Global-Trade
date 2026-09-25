@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter_animate/flutter_animate.dart';
-
 import '../../../../core/constants/app_colors.dart';
 import '../../../../core/config/mock_data.dart';
 import '../../../../core/responsive/responsive_layout.dart';
+import '../../../../core/widgets/scroll_reveal.dart';
 
 class ProductsPreviewSection extends StatelessWidget {
   const ProductsPreviewSection({super.key});
@@ -22,74 +21,76 @@ class ProductsPreviewSection extends StatelessWidget {
       crossAxisCount = 2;
     }
 
-    return Container(
-      color: AppColors.surface,
-      padding: EdgeInsets.symmetric(
-        horizontal: isDesktop ? 80 : 20,
-        vertical: isDesktop ? 100 : 60,
-      ),
-      child: Center(
-        child: ConstrainedBox(
-          constraints: const BoxConstraints(maxWidth: 1200),
-          child: Column(
-            children: [
-              // Header
-              Column(
-                children: [
-                  const Text(
-                    'OUR PRODUCTS',
-                    style: TextStyle(
-                      color: AppColors.accent,
-                      fontWeight: FontWeight.bold,
-                      letterSpacing: 2,
-                      fontSize: 14,
+    return ScrollReveal(
+      builder: (context, isVisible) => Container(
+        color: AppColors.surface,
+        padding: EdgeInsets.symmetric(
+          horizontal: isDesktop ? 80 : 20,
+          vertical: isDesktop ? 100 : 60,
+        ),
+        child: Center(
+          child: ConstrainedBox(
+            constraints: const BoxConstraints(maxWidth: 1200),
+            child: Column(
+              children: [
+                // Header
+                Column(
+                  children: [
+                    const Text(
+                      'OUR PRODUCTS',
+                      style: TextStyle(
+                        color: AppColors.accent,
+                        fontWeight: FontWeight.bold,
+                        letterSpacing: 2,
+                        fontSize: 14,
+                      ),
                     ),
-                  ),
-                  const SizedBox(height: 16),
-                  Text(
-                    'Quality products sourced and\ndelivered for global markets.',
-                    textAlign: TextAlign.center,
-                    style: TextStyle(
-                      fontSize: isDesktop ? 40 : 32,
-                      fontWeight: FontWeight.bold,
-                      color: AppColors.textPrimary,
-                      height: 1.2,
+                    const SizedBox(height: 16),
+                    Text(
+                      'Quality products sourced and\ndelivered for global markets.',
+                      textAlign: TextAlign.center,
+                      style: TextStyle(
+                        fontSize: isDesktop ? 40 : 32,
+                        fontWeight: FontWeight.bold,
+                        color: AppColors.textPrimary,
+                        height: 1.2,
+                      ),
                     ),
+                  ],
+                ).animate(target: isVisible ? 1 : 0).fade(duration: 800.ms).slideY(begin: 0.2),
+                
+                const SizedBox(height: 60),
+                
+                // Product Grid
+                GridView.builder(
+                  shrinkWrap: true,
+                  physics: const NeverScrollableScrollPhysics(),
+                  gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                    crossAxisCount: crossAxisCount,
+                    crossAxisSpacing: 30,
+                    mainAxisSpacing: 30,
+                    childAspectRatio: 0.8,
                   ),
-                ],
-              ).animate().fade(duration: 800.ms).slideY(begin: 0.2),
-              
-              const SizedBox(height: 60),
-              
-              // Product Grid
-              GridView.builder(
-                shrinkWrap: true,
-                physics: const NeverScrollableScrollPhysics(),
-                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                  crossAxisCount: crossAxisCount,
-                  crossAxisSpacing: 30,
-                  mainAxisSpacing: 30,
-                  childAspectRatio: 0.8,
+                  itemCount: MockData.products.take(6).length,
+                  itemBuilder: (context, index) {
+                    final product = MockData.products[index];
+                    return _ProductCard(
+                      id: product.id,
+                      title: product.title,
+                      description: product.description,
+                      imageUrl: product.imageUrl,
+                    ).animate(target: isVisible ? 1 : 0).fade(delay: (100 * index).ms).scale(begin: const Offset(0.9, 0.9));
+                  },
                 ),
-                itemCount: MockData.products.take(6).length,
-                itemBuilder: (context, index) {
-                  final product = MockData.products[index];
-                  return _ProductCard(
-                    id: product.id,
-                    title: product.title,
-                    description: product.description,
-                    imageUrl: product.imageUrl,
-                  ).animate().fade(delay: (100 * index).ms).scale(begin: const Offset(0.9, 0.9));
-                },
-              ),
-              
-              const SizedBox(height: 48),
-              
-              OutlinedButton(
-                onPressed: () => context.go('/products'),
-                child: const Text('View All Categories'),
-              ).animate().fade(delay: 600.ms),
-            ],
+                
+                const SizedBox(height: 48),
+                
+                OutlinedButton(
+                  onPressed: () => context.go('/products'),
+                  child: const Text('View All Categories'),
+                ).animate(target: isVisible ? 1 : 0).fade(delay: 600.ms),
+              ],
+            ),
           ),
         ),
       ),
@@ -150,10 +151,9 @@ class _ProductCardState extends State<_ProductCard> {
                     AnimatedScale(
                       scale: _isHovered ? 1.05 : 1.0,
                       duration: const Duration(milliseconds: 400),
-                      child: CachedNetworkImage(
-                        imageUrl: widget.imageUrl,
+                      child: Image.network(
+                        widget.imageUrl,
                         fit: BoxFit.cover,
-                        memCacheWidth: 600,
                       ),
                     ),
                     Container(

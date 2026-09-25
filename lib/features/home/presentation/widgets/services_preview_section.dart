@@ -5,6 +5,7 @@ import 'package:flutter_animate/flutter_animate.dart';
 import '../../../../core/constants/app_colors.dart';
 import '../../../../core/config/mock_data.dart';
 import '../../../../core/responsive/responsive_layout.dart';
+import '../../../../core/widgets/scroll_reveal.dart';
 
 class ServicesPreviewSection extends StatelessWidget {
   const ServicesPreviewSection({super.key});
@@ -21,66 +22,68 @@ class ServicesPreviewSection extends StatelessWidget {
       crossAxisCount = 2;
     }
 
-    return Container(
-      color: Colors.white,
-      padding: EdgeInsets.symmetric(
-        horizontal: isDesktop ? 80 : 20,
-        vertical: isDesktop ? 100 : 60,
-      ),
-      child: Center(
-        child: ConstrainedBox(
-          constraints: const BoxConstraints(maxWidth: 1200),
-          child: Column(
-            children: [
-              // Header
-              Column(
-                children: [
-                  const Text(
-                    'OUR EXPERTISE',
-                    style: TextStyle(
-                      color: AppColors.accent,
-                      fontWeight: FontWeight.bold,
-                      letterSpacing: 2,
-                      fontSize: 14,
+    return ScrollReveal(
+      builder: (context, isVisible) => Container(
+        color: Colors.white,
+        padding: EdgeInsets.symmetric(
+          horizontal: isDesktop ? 80 : 20,
+          vertical: isDesktop ? 100 : 60,
+        ),
+        child: Center(
+          child: ConstrainedBox(
+            constraints: const BoxConstraints(maxWidth: 1200),
+            child: Column(
+              children: [
+                // Header
+                Column(
+                  children: [
+                    const Text(
+                      'OUR EXPERTISE',
+                      style: TextStyle(
+                        color: AppColors.accent,
+                        fontWeight: FontWeight.bold,
+                        letterSpacing: 2,
+                        fontSize: 14,
+                      ),
                     ),
-                  ),
-                  const SizedBox(height: 16),
-                  Text(
-                    'Our Global Trade Services',
-                    textAlign: TextAlign.center,
-                    style: TextStyle(
-                      fontSize: isDesktop ? 40 : 32,
-                      fontWeight: FontWeight.bold,
-                      color: AppColors.textPrimary,
-                      height: 1.2,
+                    const SizedBox(height: 16),
+                    Text(
+                      'Our Global Trade Services',
+                      textAlign: TextAlign.center,
+                      style: TextStyle(
+                        fontSize: isDesktop ? 40 : 32,
+                        fontWeight: FontWeight.bold,
+                        color: AppColors.textPrimary,
+                        height: 1.2,
+                      ),
                     ),
+                  ],
+                ).animate(target: isVisible ? 1 : 0).fade(duration: 800.ms).slideY(begin: 0.2),
+                
+                const SizedBox(height: 60),
+                
+                // Services Grid
+                GridView.builder(
+                  shrinkWrap: true,
+                  physics: const NeverScrollableScrollPhysics(),
+                  gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                    crossAxisCount: crossAxisCount,
+                    crossAxisSpacing: 30,
+                    mainAxisSpacing: 30,
+                    childAspectRatio: isDesktop ? 0.8 : 1.0,
                   ),
-                ],
-              ).animate().fade(duration: 800.ms).slideY(begin: 0.2),
-              
-              const SizedBox(height: 60),
-              
-              // Services Grid
-              GridView.builder(
-                shrinkWrap: true,
-                physics: const NeverScrollableScrollPhysics(),
-                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                  crossAxisCount: crossAxisCount,
-                  crossAxisSpacing: 30,
-                  mainAxisSpacing: 30,
-                  childAspectRatio: isDesktop ? 0.8 : 1.0,
+                  itemCount: MockData.services.length,
+                  itemBuilder: (context, index) {
+                    final service = MockData.services[index];
+                    return _ServiceCard(
+                      title: service.title,
+                      description: service.description,
+                      icon: service.icon,
+                    ).animate(target: isVisible ? 1 : 0).fade(delay: (100 * index).ms).slideY(begin: 0.2);
+                  },
                 ),
-                itemCount: MockData.services.length,
-                itemBuilder: (context, index) {
-                  final service = MockData.services[index];
-                  return _ServiceCard(
-                    title: service.title,
-                    description: service.description,
-                    icon: service.icon,
-                  ).animate().fade(delay: (100 * index).ms).slideY(begin: 0.2);
-                },
-              ),
-            ],
+              ],
+            ),
           ),
         ),
       ),
@@ -147,7 +150,7 @@ class _ServiceCardState extends State<_ServiceCard> {
                   color: _isHovered ? Colors.white : AppColors.primary,
                 ),
               ),
-              const Spacer(),
+              const SizedBox(height: 24),
               Text(
                 widget.title,
                 style: TextStyle(
@@ -157,16 +160,18 @@ class _ServiceCardState extends State<_ServiceCard> {
                 ),
               ),
               const SizedBox(height: 12),
-              Text(
-                widget.description,
-                style: TextStyle(
-                  color: _isHovered ? Colors.white.withValues(alpha: 0.8) : AppColors.textSecondary,
-                  height: 1.5,
+              Expanded(
+                child: Text(
+                  widget.description,
+                  style: TextStyle(
+                    color: _isHovered ? Colors.white.withValues(alpha: 0.8) : AppColors.textSecondary,
+                    height: 1.5,
+                  ),
+                  maxLines: 4,
+                  overflow: TextOverflow.ellipsis,
                 ),
-                maxLines: 3,
-                overflow: TextOverflow.ellipsis,
               ),
-              const SizedBox(height: 24),
+              const SizedBox(height: 12),
               Row(
                 children: [
                   Text(

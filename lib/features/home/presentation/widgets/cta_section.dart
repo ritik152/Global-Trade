@@ -3,6 +3,7 @@ import 'package:go_router/go_router.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import '../../../../core/constants/app_colors.dart';
 import '../../../../core/responsive/responsive_layout.dart';
+import '../../../../core/widgets/scroll_reveal.dart';
 
 class CtaSection extends StatelessWidget {
   const CtaSection({super.key});
@@ -11,88 +12,91 @@ class CtaSection extends StatelessWidget {
   Widget build(BuildContext context) {
     final isDesktop = ResponsiveLayout.isDesktop(context);
 
-    return SizedBox(
-      width: double.infinity,
-      child: Stack(
-        children: [
-          Positioned.fill(
-            child: Image.network(
-              'https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?auto=format&fit=crop&q=80&w=1920',
-              fit: BoxFit.cover,
+    return ScrollReveal(
+      builder: (context, isVisible) => SizedBox(
+        width: double.infinity,
+        child: Stack(
+          children: [
+            Positioned.fill(
+              child: Image.network(
+                'https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?auto=format&fit=crop&q=80&w=1920',
+                fit: BoxFit.cover,
+              ),
             ),
-          ),
-          Positioned.fill(
-            child: Container(
-              color: AppColors.primaryDark.withValues(alpha: 0.95),
+            Positioned.fill(
+              child: Container(
+                color: AppColors.primaryDark.withValues(alpha: 0.95),
+              ),
             ),
-          ),
-          Padding(
-            padding: EdgeInsets.symmetric(
-              horizontal: isDesktop ? 80 : 20,
-              vertical: isDesktop ? 120 : 80,
-            ),
-            child: Center(
-              child: ConstrainedBox(
-          constraints: const BoxConstraints(maxWidth: 800),
-          child: Column(
-            children: [
-              Text(
-                'Let\'s Build Global Trade Opportunities Together',
-                textAlign: TextAlign.center,
-                style: TextStyle(
-                  fontSize: isDesktop ? 48 : 36,
-                  fontWeight: FontWeight.bold,
-                  color: Colors.white,
-                  height: 1.2,
-                ),
-              ).animate().fade(duration: 800.ms).slideY(begin: 0.2),
-              
-              const SizedBox(height: 24),
-              
-              Text(
-                'Have a product requirement, sourcing need or export opportunity?\nLet\'s discuss how we can work together.',
-                textAlign: TextAlign.center,
-                style: TextStyle(
-                  fontSize: isDesktop ? 20 : 18,
-                  color: Colors.white.withValues(alpha: 0.8),
-                  height: 1.5,
-                ),
-              ).animate().fade(delay: 200.ms, duration: 800.ms).slideY(begin: 0.2),
-              
-              const SizedBox(height: 48),
-              
-              Wrap(
-                spacing: 16,
-                runSpacing: 16,
-                alignment: WrapAlignment.center,
-                children: [
-                  ElevatedButton(
-                    onPressed: () => context.go('/contact'),
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: AppColors.accent,
-                      foregroundColor: AppColors.primaryDark,
-                      padding: const EdgeInsets.symmetric(horizontal: 40, vertical: 24),
-                    ),
-                    child: const Text('Request a Quote', style: TextStyle(fontSize: 16)),
+            Padding(
+              padding: EdgeInsets.symmetric(
+                horizontal: isDesktop ? 80 : 20,
+                vertical: isDesktop ? 120 : 80,
+              ),
+              child: Center(
+                child: ConstrainedBox(
+            constraints: const BoxConstraints(maxWidth: 800),
+            child: Column(
+              children: [
+                Text(
+                  'Let\'s Build Global Trade Opportunities Together',
+                  textAlign: TextAlign.center,
+                  style: TextStyle(
+                    fontSize: isDesktop ? 48 : 36,
+                    fontWeight: FontWeight.bold,
+                    color: Colors.white,
+                    height: 1.2,
                   ),
-                  OutlinedButton(
-                    onPressed: () => context.go('/contact'),
-                    style: OutlinedButton.styleFrom(
-                      foregroundColor: Colors.white,
-                      side: const BorderSide(color: Colors.white, width: 2),
-                      padding: const EdgeInsets.symmetric(horizontal: 40, vertical: 24),
-                    ),
-                    child: const Text('Contact Us', style: TextStyle(fontSize: 16)),
+                ).animate(target: isVisible ? 1 : 0).fade(duration: 800.ms).slideY(begin: 0.2),
+                
+                const SizedBox(height: 24),
+                
+                Text(
+                  'Have a product requirement, sourcing need or export opportunity?\nLet\'s discuss how we can work together.',
+                  textAlign: TextAlign.center,
+                  style: TextStyle(
+                    fontSize: isDesktop ? 20 : 18,
+                    color: Colors.white.withValues(alpha: 0.8),
+                    height: 1.5,
                   ),
-                ],
-              ).animate().fade(delay: 400.ms, duration: 800.ms).slideY(begin: 0.2),
-            ],
+                ).animate(target: isVisible ? 1 : 0).fade(delay: 200.ms, duration: 800.ms).slideY(begin: 0.2),
+                
+                const SizedBox(height: 48),
+                
+                Wrap(
+                  spacing: 16,
+                  runSpacing: 16,
+                  alignment: WrapAlignment.center,
+                  children: [
+                    ElevatedButton(
+                      onPressed: () => context.go('/contact'),
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: AppColors.accent,
+                        foregroundColor: AppColors.primaryDark,
+                        padding: const EdgeInsets.symmetric(horizontal: 40, vertical: 24),
+                      ),
+                      child: const Text('Request a Quote', style: TextStyle(fontSize: 16)),
+                    ),
+                    OutlinedButton(
+                      onPressed: () => context.go('/contact'),
+                      style: OutlinedButton.styleFrom(
+                        foregroundColor: Colors.white,
+                        side: const BorderSide(color: Colors.white, width: 2),
+                        padding: const EdgeInsets.symmetric(horizontal: 40, vertical: 24),
+                      ),
+                      child: const Text('Contact Us', style: TextStyle(fontSize: 16)),
+                    ),
+                  ],
+                ).animate(target: isVisible ? 1 : 0).fade(delay: 400.ms, duration: 800.ms).slideY(begin: 0.2),
+              ],
+            ),
           ),
         ),
-      ),
-      ),
-        ],
+        ),
+          ],
+        ),
       ),
     );
   }
 }
+

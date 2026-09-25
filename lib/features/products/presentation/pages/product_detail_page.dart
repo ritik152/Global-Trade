@@ -30,10 +30,9 @@ class ProductDetailPage extends StatelessWidget {
           child: Stack(
             fit: StackFit.expand,
             children: [
-              CachedNetworkImage(
-                imageUrl: product.imageUrl,
+              Image.network(
+                product.imageUrl,
                 fit: BoxFit.cover,
-                memCacheWidth: 1920,
               ),
               Container(
                 color: AppColors.primaryDark.withValues(alpha: 0.8),
@@ -75,8 +74,8 @@ class ProductDetailPage extends StatelessWidget {
                     flex: isDesktop ? 1 : 0,
                     child: ClipRRect(
                       borderRadius: BorderRadius.circular(8),
-                      child: CachedNetworkImage(
-                        imageUrl: product.imageUrl,
+                      child: Image.network(
+                        product.imageUrl,
                         fit: BoxFit.cover,
                         height: isDesktop ? 500 : 300,
                         width: double.infinity,

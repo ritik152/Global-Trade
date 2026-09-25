@@ -106,8 +106,8 @@ class AboutPage extends StatelessWidget {
                     flex: isDesktop ? 1 : 0,
                     child: ClipRRect(
                       borderRadius: BorderRadius.circular(8),
-                      child: CachedNetworkImage(
-                        imageUrl: MockData.aboutImageUrl,
+                      child: Image.network(
+                        MockData.aboutImageUrl,
                         fit: BoxFit.cover,
                         height: isDesktop ? 600 : 400,
                         width: double.infinity,

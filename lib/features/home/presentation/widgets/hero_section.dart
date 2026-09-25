@@ -23,11 +23,10 @@ class HeroSection extends StatelessWidget {
         fit: StackFit.expand,
         children: [
           // Background Image
-          CachedNetworkImage(
-            imageUrl: MockData.heroImageUrl,
+          Image.network(
+            MockData.heroImageUrl,
             fit: BoxFit.cover,
-            placeholder: (context, url) => Container(color: AppColors.primary),
-            errorWidget: (context, url, error) => Container(color: AppColors.primary),
+            errorBuilder: (context, error, stackTrace) => Container(color: AppColors.primary),
           ),
           
           // Gradient Overlay

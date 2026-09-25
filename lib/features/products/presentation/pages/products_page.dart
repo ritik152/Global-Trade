@@ -145,10 +145,9 @@ class _ProductCardState extends State<_ProductCard> {
                     AnimatedScale(
                       scale: _isHovered ? 1.05 : 1.0,
                       duration: const Duration(milliseconds: 400),
-                      child: CachedNetworkImage(
-                        imageUrl: widget.imageUrl,
+                      child: Image.network(
+                        widget.imageUrl,
                         fit: BoxFit.cover,
-                        memCacheWidth: 600,
                       ),
                     ),
                     Container(

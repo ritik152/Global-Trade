@@ -69,10 +69,9 @@ class GlobalReachPage extends StatelessWidget {
           child: Stack(
             fit: StackFit.expand,
             children: [
-              CachedNetworkImage(
-                imageUrl: MockData.worldMapImageUrl,
+              Image.network(
+                MockData.worldMapImageUrl,
                 fit: BoxFit.cover,
-                memCacheWidth: 1920,
               ),
               Container(
                 color: AppColors.primaryDark.withValues(alpha: 0.9),
