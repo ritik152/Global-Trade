@@ -11,25 +11,28 @@ class CtaSection extends StatelessWidget {
   Widget build(BuildContext context) {
     final isDesktop = ResponsiveLayout.isDesktop(context);
 
-    return Container(
+    return SizedBox(
       width: double.infinity,
-      padding: EdgeInsets.symmetric(
-        horizontal: isDesktop ? 80 : 20,
-        vertical: isDesktop ? 120 : 80,
-      ),
-      decoration: BoxDecoration(
-        color: AppColors.surface,
-        image: DecorationImage(
-          image: const NetworkImage('https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?auto=format&fit=crop&q=80&w=1920'),
-          fit: BoxFit.cover,
-          colorFilter: ColorFilter.mode(
-            AppColors.primaryDark.withOpacity(0.95),
-            BlendMode.srcOver,
+      child: Stack(
+        children: [
+          Positioned.fill(
+            child: Image.network(
+              'https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?auto=format&fit=crop&q=80&w=1920',
+              fit: BoxFit.cover,
+            ),
           ),
-        ),
-      ),
-      child: Center(
-        child: ConstrainedBox(
+          Positioned.fill(
+            child: Container(
+              color: AppColors.primaryDark.withValues(alpha: 0.95),
+            ),
+          ),
+          Padding(
+            padding: EdgeInsets.symmetric(
+              horizontal: isDesktop ? 80 : 20,
+              vertical: isDesktop ? 120 : 80,
+            ),
+            child: Center(
+              child: ConstrainedBox(
           constraints: const BoxConstraints(maxWidth: 800),
           child: Column(
             children: [
@@ -51,7 +54,7 @@ class CtaSection extends StatelessWidget {
                 textAlign: TextAlign.center,
                 style: TextStyle(
                   fontSize: isDesktop ? 20 : 18,
-                  color: Colors.white.withOpacity(0.8),
+                  color: Colors.white.withValues(alpha: 0.8),
                   height: 1.5,
                 ),
               ).animate().fade(delay: 200.ms, duration: 800.ms).slideY(begin: 0.2),
@@ -86,6 +89,9 @@ class CtaSection extends StatelessWidget {
             ],
           ),
         ),
+      ),
+      ),
+        ],
       ),
     );
   }

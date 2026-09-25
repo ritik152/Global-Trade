@@ -24,33 +24,36 @@ class ProductDetailPage extends StatelessWidget {
     return Column(
       children: [
         // Header
-        Container(
+        SizedBox(
           width: double.infinity,
           height: isDesktop ? 400 : 300,
-          decoration: BoxDecoration(
-            image: DecorationImage(
-              image: CachedNetworkImageProvider(product.imageUrl),
-              fit: BoxFit.cover,
-              colorFilter: ColorFilter.mode(
-                AppColors.primaryDark.withOpacity(0.8),
-                BlendMode.srcOver,
+          child: Stack(
+            fit: StackFit.expand,
+            children: [
+              CachedNetworkImage(
+                imageUrl: product.imageUrl,
+                fit: BoxFit.cover,
+                memCacheWidth: 1920,
               ),
-            ),
-          ),
-          child: Center(
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Text(
-                  product.title,
-                  style: TextStyle(
-                    fontSize: isDesktop ? 48 : 36,
-                    fontWeight: FontWeight.bold,
-                    color: Colors.white,
-                  ),
-                ).animate().fade().slideY(),
-              ],
-            ),
+              Container(
+                color: AppColors.primaryDark.withValues(alpha: 0.8),
+              ),
+              Center(
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Text(
+                      product.title,
+                      style: TextStyle(
+                        fontSize: isDesktop ? 48 : 36,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.white,
+                      ),
+                    ).animate().fade().slideY(),
+                  ],
+                ),
+              ),
+            ],
           ),
         ),
 

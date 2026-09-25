@@ -38,7 +38,7 @@ class ServicesPage extends StatelessWidget {
                 'Comprehensive global trade solutions tailored to your needs.',
                 style: TextStyle(
                   fontSize: isDesktop ? 20 : 18,
-                  color: Colors.white.withOpacity(0.8),
+                  color: Colors.white.withValues(alpha: 0.8),
                 ),
                 textAlign: TextAlign.center,
               ).animate().fade(delay: 200.ms).slideY(),
@@ -141,7 +141,7 @@ class _ServiceIconBig extends StatelessWidget {
         child: Container(
           padding: const EdgeInsets.all(40),
           decoration: BoxDecoration(
-            color: AppColors.primary.withOpacity(0.1),
+            color: AppColors.primary.withValues(alpha: 0.1),
             shape: BoxShape.circle,
           ),
           child: Icon(

@@ -47,7 +47,7 @@ class ProductsPage extends StatelessWidget {
                 'Quality products sourced and delivered for global markets.',
                 style: TextStyle(
                   fontSize: isDesktop ? 20 : 18,
-                  color: Colors.white.withOpacity(0.8),
+                  color: Colors.white.withValues(alpha: 0.8),
                 ),
                 textAlign: TextAlign.center,
               ).animate().fade(delay: 200.ms).slideY(),
@@ -127,9 +127,9 @@ class _ProductCardState extends State<_ProductCard> {
             borderRadius: BorderRadius.circular(8),
             boxShadow: [
               BoxShadow(
-                color: Colors.black.withOpacity(_isHovered ? 0.1 : 0.05),
-                blurRadius: _isHovered ? 20 : 10,
-                offset: Offset(0, _isHovered ? 10 : 5),
+                color: Colors.black.withValues(alpha: _isHovered ? 0.1 : 0.05),
+                blurRadius: _isHovered ? 15 : 5,
+                offset: Offset(0, _isHovered ? 8 : 4),
               ),
             ],
           ),
@@ -148,12 +148,13 @@ class _ProductCardState extends State<_ProductCard> {
                       child: CachedNetworkImage(
                         imageUrl: widget.imageUrl,
                         fit: BoxFit.cover,
+                        memCacheWidth: 600,
                       ),
                     ),
                     Container(
                       decoration: BoxDecoration(
                         gradient: LinearGradient(
-                          colors: [Colors.transparent, Colors.black.withOpacity(0.5)],
+                          colors: [Colors.transparent, Colors.black.withValues(alpha: 0.5)],
                           begin: Alignment.topCenter,
                           end: Alignment.bottomCenter,
                         ),

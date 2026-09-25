@@ -35,8 +35,8 @@ class HeroSection extends StatelessWidget {
             decoration: BoxDecoration(
               gradient: LinearGradient(
                 colors: [
-                  AppColors.primaryDark.withOpacity(0.9),
-                  AppColors.primary.withOpacity(0.7),
+                  AppColors.primaryDark.withValues(alpha: 0.9),
+                  AppColors.primary.withValues(alpha: 0.7),
                   Colors.transparent,
                 ],
                 stops: const [0.0, 0.5, 1.0],
@@ -59,8 +59,8 @@ class HeroSection extends StatelessWidget {
                   Container(
                     padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
                     decoration: BoxDecoration(
-                      color: AppColors.accent.withOpacity(0.2),
-                      border: Border.all(color: AppColors.accent.withOpacity(0.5)),
+                      color: AppColors.accent.withValues(alpha: 0.2),
+                      border: Border.all(color: AppColors.accent.withValues(alpha: 0.5)),
                       borderRadius: BorderRadius.circular(30),
                     ),
                     child: const Text(
@@ -97,7 +97,7 @@ class HeroSection extends StatelessWidget {
                       CompanyConfig.shortDescription,
                       style: TextStyle(
                         fontSize: isDesktop ? 20 : 18,
-                        color: Colors.white.withOpacity(0.9),
+                        color: Colors.white.withValues(alpha: 0.9),
                         height: 1.5,
                       ),
                     ),
@@ -141,7 +141,7 @@ class HeroSection extends StatelessWidget {
                       Text(
                         'Trusted Trade • Quality • Global Reach',
                         style: TextStyle(
-                          color: Colors.white.withOpacity(0.8),
+                          color: Colors.white.withValues(alpha: 0.8),
                           fontSize: 14,
                           fontWeight: FontWeight.w600,
                         ),

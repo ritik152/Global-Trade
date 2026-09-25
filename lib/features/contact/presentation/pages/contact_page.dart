@@ -67,7 +67,7 @@ class _ContactPageState extends State<ContactPage> {
                 'Get in touch for global trade opportunities.',
                 style: TextStyle(
                   fontSize: isDesktop ? 20 : 18,
-                  color: Colors.white.withOpacity(0.8),
+                  color: Colors.white.withValues(alpha: 0.8),
                 ),
                 textAlign: TextAlign.center,
               ).animate().fade(delay: 200.ms).slideY(),
@@ -148,9 +148,9 @@ class _ContactPageState extends State<ContactPage> {
                         borderRadius: BorderRadius.circular(16),
                         boxShadow: [
                           BoxShadow(
-                            color: Colors.black.withOpacity(0.05),
-                            blurRadius: 30,
-                            offset: const Offset(0, 15),
+                            color: Colors.black.withValues(alpha: 0.05),
+                            blurRadius: 10,
+                            offset: const Offset(0, 5),
                           ),
                         ],
                       ),

@@ -48,6 +48,7 @@ class _MainLayoutState extends State<MainLayout> {
           // Main content
           CustomScrollView(
             controller: _scrollController,
+            physics: const BouncingScrollPhysics(parent: AlwaysScrollableScrollPhysics()),
             slivers: [
               SliverPadding(
                 padding: EdgeInsets.only(

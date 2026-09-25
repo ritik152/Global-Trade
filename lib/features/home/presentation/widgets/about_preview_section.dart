@@ -37,7 +37,7 @@ class AboutPreviewSection extends StatelessWidget {
                     borderRadius: BorderRadius.circular(8),
                     boxShadow: [
                       BoxShadow(
-                        color: Colors.black.withOpacity(0.1),
+                        color: Colors.black.withValues(alpha: 0.1),
                         blurRadius: 20,
                         offset: const Offset(0, 10),
                       ),
@@ -52,7 +52,7 @@ class AboutPreviewSection extends StatelessWidget {
                         fit: BoxFit.cover,
                       ),
                       Container(
-                        color: AppColors.primary.withOpacity(0.1),
+                        color: AppColors.primary.withValues(alpha: 0.1),
                       ),
                     ],
                   ),

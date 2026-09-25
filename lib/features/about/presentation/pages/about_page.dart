@@ -38,7 +38,7 @@ class AboutPage extends StatelessWidget {
                 'Connecting Markets. Delivering Value.',
                 style: TextStyle(
                   fontSize: isDesktop ? 20 : 18,
-                  color: Colors.white.withOpacity(0.8),
+                  color: Colors.white.withValues(alpha: 0.8),
                 ),
               ).animate().fade(delay: 200.ms).slideY(),
             ],
@@ -220,7 +220,7 @@ class _ProcessStep extends StatelessWidget {
                 Expanded(
                   child: Container(
                     height: 2,
-                    color: AppColors.primary.withOpacity(0.3),
+                    color: AppColors.primary.withValues(alpha: 0.3),
                   ),
                 )
               else
@@ -273,7 +273,7 @@ class _ProcessStep extends StatelessWidget {
                   Expanded(
                     child: Container(
                       width: 2,
-                      color: AppColors.primary.withOpacity(0.3),
+                      color: AppColors.primary.withValues(alpha: 0.3),
                     ),
                   )
                 else

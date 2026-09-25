@@ -55,7 +55,7 @@ class Footer extends StatelessWidget {
                     Text(
                       CompanyConfig.shortDescription,
                       style: TextStyle(
-                        color: Colors.white.withOpacity(0.8),
+                        color: Colors.white.withValues(alpha: 0.8),
                         height: 1.5,
                       ),
                     ),
@@ -138,7 +138,7 @@ class Footer extends StatelessWidget {
             ],
           ),
           const SizedBox(height: 60),
-          Divider(color: Colors.white.withOpacity(0.2)),
+          Divider(color: Colors.white.withValues(alpha: 0.2)),
           const SizedBox(height: 24),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -146,7 +146,7 @@ class Footer extends StatelessWidget {
               Text(
                 '© 2026 ${CompanyConfig.name}. All Rights Reserved.',
                 style: TextStyle(
-                  color: Colors.white.withOpacity(0.6),
+                  color: Colors.white.withValues(alpha: 0.6),
                   fontSize: 14,
                 ),
               ),
@@ -173,7 +173,7 @@ class _SocialButton extends StatelessWidget {
         padding: const EdgeInsets.all(8),
         decoration: BoxDecoration(
           shape: BoxShape.circle,
-          border: Border.all(color: Colors.white.withOpacity(0.2)),
+          border: Border.all(color: Colors.white.withValues(alpha: 0.2)),
         ),
         child: Icon(icon, color: Colors.white, size: 20),
       ),
@@ -209,7 +209,7 @@ class _FooterLinkState extends State<_FooterLink> {
         child: Text(
           widget.title,
           style: TextStyle(
-            color: _isHovered ? AppColors.accent : Colors.white.withOpacity(0.8),
+            color: _isHovered ? AppColors.accent : Colors.white.withValues(alpha: 0.8),
             fontSize: 16,
           ),
         ),

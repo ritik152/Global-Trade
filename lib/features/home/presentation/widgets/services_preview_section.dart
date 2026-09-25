@@ -126,9 +126,9 @@ class _ServiceCardState extends State<_ServiceCard> {
             boxShadow: [
               if (_isHovered)
                 BoxShadow(
-                  color: AppColors.primary.withOpacity(0.3),
-                  blurRadius: 20,
-                  offset: const Offset(0, 10),
+                  color: AppColors.primary.withValues(alpha: 0.2),
+                  blurRadius: 15,
+                  offset: const Offset(0, 8),
                 ),
             ],
           ),
@@ -138,7 +138,7 @@ class _ServiceCardState extends State<_ServiceCard> {
               Container(
                 padding: const EdgeInsets.all(16),
                 decoration: BoxDecoration(
-                  color: _isHovered ? Colors.white.withOpacity(0.1) : Colors.white,
+                  color: _isHovered ? Colors.white.withValues(alpha: 0.1) : Colors.white,
                   shape: BoxShape.circle,
                 ),
                 child: Icon(
@@ -160,7 +160,7 @@ class _ServiceCardState extends State<_ServiceCard> {
               Text(
                 widget.description,
                 style: TextStyle(
-                  color: _isHovered ? Colors.white.withOpacity(0.8) : AppColors.textSecondary,
+                  color: _isHovered ? Colors.white.withValues(alpha: 0.8) : AppColors.textSecondary,
                   height: 1.5,
                 ),
                 maxLines: 3,

@@ -54,7 +54,7 @@ class GlobalReachPage extends StatelessWidget {
                 'Connecting Markets Across the World.',
                 style: TextStyle(
                   fontSize: isDesktop ? 20 : 18,
-                  color: Colors.white.withOpacity(0.8),
+                  color: Colors.white.withValues(alpha: 0.8),
                 ),
                 textAlign: TextAlign.center,
               ).animate().fade(delay: 200.ms).slideY(),
@@ -63,21 +63,20 @@ class GlobalReachPage extends StatelessWidget {
         ),
 
         // Map Section
-        Container(
+        SizedBox(
           width: double.infinity,
           height: isDesktop ? 600 : 400,
-          decoration: BoxDecoration(
-            image: DecorationImage(
-              image: CachedNetworkImageProvider(MockData.worldMapImageUrl),
-              fit: BoxFit.cover,
-              colorFilter: ColorFilter.mode(
-                AppColors.primaryDark.withOpacity(0.9),
-                BlendMode.srcOver,
-              ),
-            ),
-          ),
           child: Stack(
+            fit: StackFit.expand,
             children: [
+              CachedNetworkImage(
+                imageUrl: MockData.worldMapImageUrl,
+                fit: BoxFit.cover,
+                memCacheWidth: 1920,
+              ),
+              Container(
+                color: AppColors.primaryDark.withValues(alpha: 0.9),
+              ),
               Center(
                 child: Padding(
                   padding: const EdgeInsets.all(32.0),

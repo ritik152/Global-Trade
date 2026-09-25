@@ -132,9 +132,9 @@ class _ProductCardState extends State<_ProductCard> {
             borderRadius: BorderRadius.circular(8),
             boxShadow: [
               BoxShadow(
-                color: Colors.black.withOpacity(_isHovered ? 0.1 : 0.05),
-                blurRadius: _isHovered ? 20 : 10,
-                offset: Offset(0, _isHovered ? 10 : 5),
+                color: Colors.black.withValues(alpha: _isHovered ? 0.1 : 0.05),
+                blurRadius: _isHovered ? 15 : 5,
+                offset: Offset(0, _isHovered ? 8 : 4),
               ),
             ],
           ),
@@ -153,12 +153,13 @@ class _ProductCardState extends State<_ProductCard> {
                       child: CachedNetworkImage(
                         imageUrl: widget.imageUrl,
                         fit: BoxFit.cover,
+                        memCacheWidth: 600,
                       ),
                     ),
                     Container(
                       decoration: BoxDecoration(
                         gradient: LinearGradient(
-                          colors: [Colors.transparent, Colors.black.withOpacity(0.5)],
+                          colors: [Colors.transparent, Colors.black.withValues(alpha: 0.5)],
                           begin: Alignment.topCenter,
                           end: Alignment.bottomCenter,
                         ),

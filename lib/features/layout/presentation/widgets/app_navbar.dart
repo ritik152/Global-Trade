@@ -23,11 +23,11 @@ class AppNavbar extends StatelessWidget {
       duration: const Duration(milliseconds: 300),
       height: isDesktop ? 80 : 60,
       decoration: BoxDecoration(
-        color: isScrolled ? Colors.white : Colors.white.withOpacity(0.95),
+        color: isScrolled ? Colors.white : Colors.white.withValues(alpha: 0.95),
         boxShadow: isScrolled
             ? [
                 BoxShadow(
-                  color: Colors.black.withOpacity(0.05),
+                  color: Colors.black.withValues(alpha: 0.05),
                   blurRadius: 10,
                   offset: const Offset(0, 4),
                 )
